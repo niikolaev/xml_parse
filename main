@@ -1,0 +1,21 @@
+import xml.etree.ElementTree as ET
+import pandas as pd
+
+xml_file = ('C:/Users/90880/Downloads/test_1.xml')
+data = []
+
+tree = ET.parse(xml_file)
+root = tree.getroot()
+
+for offer in root.findall('offer'):
+    offer_id = offer.get('id')
+    vendor_code_tag = offer.find('vendorCode')
+    if vendor_code_tag is not None:
+        vendor_code = vendor_code_tag.text
+    else:
+        vendor_code = None
+    data.append({'offer_id': offer_id, 'vendorCode': vendor_code})
+
+df = pd.DataFrame(data)
+# Записываем DataFrame в CSV файл
+df.to_csv('C:\\Users\\90880\\Downloads\\products.csv', index=False)
