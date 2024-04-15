@@ -17,5 +17,6 @@ for offer in root.findall('offer'):
     data.append({'offer_id': offer_id, 'vendorCode': vendor_code})
 
 df = pd.DataFrame(data)
+#print(df.head())
 # Записываем DataFrame в CSV файл
 df.to_csv('C:\\Users\\90880\\Downloads\\products.csv', index=False)
